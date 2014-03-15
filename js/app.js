@@ -169,7 +169,7 @@ if( ! Settings.get('disclaimerAccepted') ) {
  */
 process.on('uncaughtException', function(err) {
     if (console) {
-        console.log(err);
+        console.log(err, err.stack);
     }
 });
 
