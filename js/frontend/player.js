@@ -14,20 +14,16 @@ var playTorrent = window.playTorrent = function (torrentUri, subs, movieModel, c
   tmpFilename = tmpFilename.replace(/([^a-zA-Z0-9-_])/g, '_') + '.mp4';
   var tmpFile = path.join(App.settings.cacheLocation, tmpFilename);
 
-  var numCores = (os.cpus().length > 0) ? os.cpus().length : 1;
-  var numConnections = 100;
-
   // Get torrent file
   readTorrent(torrentUri, function(err, torrent) {
     if(err) throw err;
-
+    console.log(tmpFile);
     // Start Peerflix
     videoStreamer = peerflix(torrent, {
-      // Set the custom temp file
-      path: tmpFile,
-      //port: 554,
-      buffer: (1.5 * 1024 * 1024).toString(),
-      connections: numConnections
+      // TODO: re-enabled custom path
+      // Need to be commented else peerflix won't work, will require upstream fix
+      //path: tmpFile,
+      connections: 100
     });
 
     var started = Date.now(),
