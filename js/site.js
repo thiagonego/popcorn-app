@@ -1,5 +1,5 @@
 var userAgent = navigator.platform,
-    fileHost = "http://static.cdnjd.com/releases/popcorn/";
+    fileHost = "https://drive.google.com/file/d/";
 
 var mac = /Mac/,
     win = /Win/,
