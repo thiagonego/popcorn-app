@@ -1,79 +1,243 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--
+                                                        .,;+###+;:.
+                                                  .##;`             .'@:
+                                              `@+                        +#
+                                            #'                             `@`
+                                         `@`                                 `@
+                        ``:::.`         @.                                     +.
+                    `#+`        ;@    `#                                        '.
+                  `@              `@ :;                                          @
+                 @`                 @;                                            +
+                @                   ;                                             @
+               @                                                                  @
+               @                                                                 `+
+               @                                                                 @
+                @`                `..                             ..`           #.
+                 `@;            '+#@. ';                      `:++@' .#        @.
+                 `+#;.``       ;;#@@  ,@.                     `;+@@, `@@     `;;#+`
+               .@              ::'######                       :;######+           @`
+              :,                ,;;'''+`                       `;;'''+:             .+
+              @                             `+'++++++++'++`                          ;,
+              ##   ``` `                    ''''''''''''''+                           @
+               @#, ```````                  '''''''''''''':                          .@
+                :#@# ``.```                  ''''''''''''+                         '#@
+                :,.;@@```.`````               ;'''''''''                        :@@@`
+                @``@  +'+.@'```````               ```                           '#@
+                ',`.   ..+  ,@@`@.```                ``    `::   '@@@#  #@@@# @;   @`
+                 @`.   ,..  ;.,' ,`##``@@@.  '@@@. @'..;# @'''+:@     '#;;;;;@      @
+                 @..,  ...   ...  @.`#,   `#@;;;;'#      @;;;;;'       ;;;;;;       @
+                 ':..   ..   ,.:   ..       ;;;;;;`      ';;;;;'      ,;;;;;;       @
+                  @..   ,..  ,.:   ..       ;;;;;;.      ';;;;;;      :;;;;;'      ;,
+                  @,..  ,.:  `..   ...      ;;;;;;.      ';;;;;,      ';;;;;;      @
+                  ':.,   ,.   ..   .,.      ';;;;;.      ';;;;;.      ';;;;;.      @
+                   @.,   ..   ,.   :.:      ';;;;;.      ';;;;;       ;;;;;;       @
+                   @,,.  :,.  :,.  ,.:      ';;;;;.      ;;;;;;       ;;;;;'      ;.
+                   ;;,;  :,:  :,:  ,,:      ';;;;;.      ;;;;;;      `;;;;;'      @
+                    @,,   ,:  `,:  .,:      ';;;;;.      ;;;;;'      :;;;;;:      @
+                    @:,`  ,,   ,,   ,,      ';;;;;.      ;;;;;'      ';';;;`      #
+                    :;:;  ;,`  ,,   ,,      ;;;;;;.      ;;;;;'      ';;;;;      '`
+                     @,,  ,,:  ;,   ,,      :;;';;.      ;;;;;'      ';;';'      @
+                     @::   :;  :,.  :,      :;;;;;.      ;;;;;:      ;';;;'      @
+                     ,;::  ::  ,:;  ;,      :;;;;'.     `;;';',      ;;';',      +
+                      @::  ;:   :;  :,`     .;;;;;.     ,;;';;.     :;;;''`     '
+                      @::  .:,  ::  :,.     `;';;;.     :';;;;      ;;'';'      @
+                      .#:,  :;  ;:  ,:,     `;';;;.     :;;'';      '';';'      @
+                        `#; ;:  ::   :;      ;;';;.     ;';'''      ''';''     `'
+                           `@'  ,:,  :;      ''';;.     ;'''''      ;'''',     +
+                              .@,::  :;      ;''''.     ';;'''      ;';;;    `.@
+                                 :@. ;:      ;''';.     ';;;'',:'#@@#+';,`
+                                    :@;     `'++#@@##';,.`
+                                       ;,.`                                                          -->
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Popcorn-app : Popcorn Time" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+	<title>Popcorn Time - Watch torrent movies instantly</title>
+	<meta name="description" content="Skip the downloads! Watch the best movies instantly in HD, with subtitles, for free! Available for Windows, Mac and Linux." />
+	<link rel="image_src" href="http://popcorn.cdnjd.com/images/header-ui.jpg" / >
 
-    <title>Popcorn-app</title>
-  </head>
+	<meta property="og:title" content="Popcorn Time" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="http://popcorn.cdnjd.com/images/header-ui.jpg" />
+	<meta property="og:url" content="http://popcorn.cdnjd.com" />
+	<meta property="og:site_name" content="Popcorn Time" />
 
-  <body>
+	<script type="text/javascript">
+	// Redirect the user to the correct language
+	// TODO: Remember the preferred language
+	var language = (navigator.language || navigator.userLanguage).toLowerCase().slice(0,2); 
+	var supportedLanguages = ['es'];
+	if( language != 'en' ) {
+		for( i in supportedLanguages ) {
+			if( supportedLanguages[i] === language ){ window.location.replace("/"+language); break; }
+		}
+	}
+	</script>
+</head>
+<body class="beta">
+	<section id="header">
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/thiagonego/popcorn-app">View on GitHub</a>
+		<nav class="fixed-width fadeInDown wow">
+			<a href="http://popcorn.cdnjd.com" id="logo">Popcorn Time</a>
+			<ul class="align-right">
+				<li class="social"><a href="https://facebook.com/getpopcorntime" target="_blank" class="icon-facebook"></a></li>
+				<li class="social"><a href="http://twitter.com/getpopcornapp" target="_blank" class="icon-twitter"></a></li>
+				<li class="social"><a href="http://github.com/popcorn-team" target="_blank" class="icon-github"></a></li>
+			</ul>
 
-          <h1 id="project_title">Popcorn-app</h1>
-          <h2 id="project_tagline">Popcorn Time</h2>
+			<ul class="align-left">
+				<li class="text"><a href="faq">FAQ</a></li>
+				<li class="text"><a href="tos">TOS</a></li>
+			</ul>
+		</nav>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/thiagonego/popcorn-app/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/thiagonego/popcorn-app/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+		<div class="text fadeInDown wow">
+			<h1>Watch torrent movies instantly</h1>
+			<p>Currently in Beta, but go ahead and try it!</p>
+		</div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+		<ul id="links">
+			<li class="download dl-mac">
+				<a data-file="Popcorn-Time-2.7-Mac.tgz" class="btn-main icon-mac" target="_blank">Download Beta 2.7</a><br />
+				<small>For Mac OSX 10.7 and above</small>
+			</li>
+			<li class="download dl-win">
+				<a data-file="Popcorn-Time-2.7-Win.zip" class="btn-main icon-win" target="_blank">Download Beta 2.7</a><br />
+				<small>For Windows 7 and above</small>
+			</li>
+			<li class="download dl-lin-32">
+				<a data-file="Popcorn-Time-2.7-Linux-32.tgz" class="btn-main icon-linux" target="_blank">Download Beta 2.7</a><br />
+				<small>For 32-bit Linux Users</small>
+			</li>
+			<li class="download dl-lin-64">
+				<a data-file="Popcorn-Time-2.7-Linux-64.tgz" class="btn-main icon-linux" target="_blank">Download Beta 2.7</a><br />
+				<small>For 64-bit Linux Users</small>
+			</li>
+		</ul>
+		<img src="images/header-ui.jpg" class="ui-screenshot fadeInUp wow" alt="Popcorn Time UI">
+	</section>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+	<div class="container">
+		<div class="warning fadeIn wow">
+			<h5 class="icon-info">Popcorn Time streams movies from Torrents</h5>
+			<p>Downloading copyrighted material may be illegal in your country. Use at your own risk.</p>
+		</div>
+		<section id="features" class="fixed-width">
+			<div class="clear-fix">
+				<article class="fadeInLeft wow">
+					<img src="images/icon-best.gif" alt="">
+					<h5>Great movies</h5>
+					<p>We're constantly searching all over the web for the best torrents from the most important sites.</p>
+				</article>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+				<article class="fadeInRight wow">
+					<img src="images/icon-watch.gif" alt="">
+					<h5>No restrictions</h5>
+					<p>Watch any movie as many times as you want. All you need to get started is a proper internet connection.</p>
+				</article>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+				<article class="fadeInLeft wow">
+					<img src="images/icon-search.gif" alt="">
+					<h5>Awesome catalogue</h5>
+					<p>If the movie is out there, Popcorn Time will find the best version possible and start streaming it right away.</p>
+				</article>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+				<article class="fadeInRight wow">
+					<img src="images/icon-subs.gif" alt="">
+					<h5>The best quality</h5>
+					<p>Watch your movie instantly in HD and with subtitles. And then keep watching.</p>
+				</article>
+			</div>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+			<div class="width-50 align-center action fadeInUp wow">
+				<img src="images/pochoclin.gif" alt="Pochoclin" class="align-center pochoclin">
+				<hr />
+				<h2>Best of all... it's free!</h2>
+				<div class="dl-mac">
+					<a data-file="Popcorn-Time-2.7-Mac.tgz" class="btn-main icon-mac" target="_blank">Download Beta 2.7</a>
+					<small>For Mac OSX 10.7 and above</small>
+				</div>
+				<div class="dl-win">
+					<a data-file="Popcorn-Time-2.7-Win.zip" class="btn-main icon-win" target="_blank">Download Beta 2.7</a>
+					<small>For Windows 7 and above</small>
+				</div>
+				<div class="dl-lin-32">
+					<a data-file="Popcorn-Time-2.7-Linux-32.tgz" class="btn-main icon-lin" target="_blank">Download Beta 2.7</a>
+					<small>For 32-bit Linux Users</small>
+				</div>
+				<div class="dl-lin-64">
+					<a data-file="Popcorn-Time-2.7-Linux-64.tgz" class="btn-main icon-lin" target="_blank">Download Beta 2.7</a>
+					<small>For 64-bit Linux Users</small>
+				</div>
+			</div>
+		</section>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+		<section id="how">
+			<div class="fixed-width fadeInLeft wow">
+				<h2>Hard to believe?</h2>
+				<h4>See how easy it works...</h4>
+				<ul class="steps">
+					<li class="icon-eye">Open PT &amp; select a movie</li>
+					<li class="icon-hd">Choose HD &amp; Subtitles</li>
+					<li class="icon-play">Click play &amp; enjoy!</li>
+				</ul>
+			</div>
+			<img src="images/how-ui.png" class="ui-screenshot fadeInRight wow" alt="Popcorn Time UI">
+		</section>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+		<section id="get-app">
+			<div class="text fadeIn wow">
+				<h2>A whole new way to watch movies</h2>
+				<p>Just take care of the popcorn &amp; leave the rest to us.</p>
+			</div>
+			<ul class="platforms">
+				<li class="mac icon-laptop fadeInUp wow" data-wow-delay=".2s">
+					<a data-file="Popcorn-Time-2.7-Mac.tgz" class="btn-main icon-mac" target="_blank">Download Beta 2.7</a>
+					<small>For Mac OSX 10.7 and above</small>
+				</li>
+				<li class="win icon-screen fadeInUp wow" data-wow-delay=".4s">
+					<a data-file="Popcorn-Time-2.7-Win.zip" class="btn-main icon-win" target="_blank">Download Beta 2.7</a>
+					<small>For Windows 7 and above</small>
+				</li>
+				<li class="lin-32 icon-window fadeInUp wow" data-wow-delay=".6s">
+					<a data-file="Popcorn-Time-2.7-Linux-32.tgz" class="btn-main icon-linux" target="_blank">Download Beta 2.7</a>
+					<small>For 32-bit Linux Users</small>
+				</li>
+				<li class="lin-64 icon-window fadeInUp wow" data-wow-delay=".8s">
+					<a data-file="Popcorn-Time-2.7-Linux-64.tgz" class="btn-main icon-linux" target="_blank">Download Beta 2.7</a>
+					<small>For 64-bit Linux Users</small>
+				</li>
+			</ul>
+		</section>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+		<section id="browse-movies">
+			<h2>These are some of the movies you'd be able to watch</h2>
+		</section>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Popcorn-app maintained by <a href="https://github.com/thiagonego">thiagonego</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+		<section id="footer" class="fadeInUp wow">
+			<hr style="display: none">
+			<nav class="clear-fix">
+				<a href="http://popcorn.cdnjd.com" class="logo">Popcorn time</a>
+				<ul>
+					<li class="social"><a href="https://facebook.com/getpopcorntime" target="_blank" class="icon-facebook"> </a></li>
+					<li class="social"><a href="http://twitter.com/getpopcornapp" target="_blank" class="icon-twitter"> </a></li>
+					<li class="github"><a href="http://github.com/popcorn-team" target="_blank" class="icon-github">Github</a></li>
+                </ul>
+			</nav>
+			<footer>
+				<hr>
+				<i class="film"></i>
+				<p>Made with <span>&lt;3</span> by a bunch of geeks from All Around The World<br /> <small><a href="tos">Terms of Service</a> &mdash; <a href="faq">FAQ</a></small></p>
+			</footer>
+		</section>
+	</div>
+	<script type="text/javascript" src="js/wow.js"></script>
+	<script type="text/javascript" src="js/site.js?20140308"></script>
+</body>
 </html>
