@@ -28,7 +28,7 @@
     "i18n": "0.4.1",
     "xmlrpc": "1.2.0",
     "request": "2.34.0",
-    "peerflix": "0.1.6",
+    "peerflix": "0.2.2",
     "cheerio": "0.13.1",
     "express": "3.4.8",
     "socket.io": "0.9.16",

@@ -1,48 +1,60 @@
 // Opens a streaming torrent client
 
-var videoStreamer = null;
-var playTorrent = window.playTorrent = function (torrent, subs, movieModel, callback, progressCallback) {
+var readTorrent = require('read-torrent');
+var peerflix = require('peerflix');
+var address = require('network-address');
+
+videoStreamer = null;
+var playTorrent = window.playTorrent = function (torrentUri, subs, movieModel, callback, progressCallback) {
 
   videoStreamer ? $(document).trigger('videoExit') : null;
 
   // Create a unique file to cache the video (with a microtimestamp) to prevent read conflicts
+<<<<<<< .merge_file_i4nP3e
   var tmpFolder = path.join(os.tmpDir(), 'Popcorn-Time')
   var tmpFilename = ( torrent.toLowerCase().split('/').pop().split('.torrent').shift() ).slice(0,100);
+=======
+  var tmpFilename = ( torrentUri.toLowerCase().split('/').pop().split('.torrent').shift() ).slice(0,100);
+>>>>>>> .merge_file_eeLamf
   tmpFilename = tmpFilename.replace(/([^a-zA-Z0-9-_])/g, '_') + '.mp4';
   var tmpFile = path.join(tmpFolder, tmpFilename);
 
-  var numCores = (os.cpus().length > 0) ? os.cpus().length : 1;
-  var numConnections = 100;
-
-  // Start Peerflix
-  var peerflix = require('peerflix');
-
-  videoStreamer = peerflix(torrent, {
-    // Set the custom temp file
-    path: tmpFile,
-    //port: 554,
-    buffer: (1.5 * 1024 * 1024).toString(),
-    connections: numConnections
-  }, function (err, flix) {
-    if (err) throw err;
+  // Get torrent file
+  readTorrent(torrentUri, function(err, torrent) {
+    if(err) throw err;
+    console.log(tmpFile);
+    // Start Peerflix
+    videoStreamer = peerflix(torrent, {
+      // TODO: re-enabled custom path
+      // Need to be commented else peerflix won't work, will require upstream fix
+      //path: tmpFile,
+      connections: 100
+    });
 
     var started = Date.now(),
       loadedTimeout;
+    var flix = videoStreamer;
+
+    flix.on('uninterested', function() {
+      flix.swarm.pause();
+    });
+
+    flix.on('interested', function() {
+      flix.swarm.resume();
+    });
 
     flix.server.on('listening', function () {
-      var href = 'http://127.0.0.1:' + flix.server.address().port + '/';
+      var href = 'http://'+address()+':'+flix.server.address().port+'/';
 
       loadedTimeout ? clearTimeout(loadedTimeout) : null;
 
       var checkLoadingProgress = function () {
-
-        var now = flix.downloaded,
-          total = flix.selected.length,
+        var now = flix.swarm.downloaded,
+          total = flix.torrent.length,
         // There's a minimum size before we start playing the video.
         // Some movies need quite a few frames to play properly, or else the user gets another (shittier) loading screen on the video player.
           targetLoadedSize = MIN_SIZE_LOADED > total ? total : MIN_SIZE_LOADED,
           targetLoadedPercent = MIN_PERCENTAGE_LOADED * total / 100.0,
-
           targetLoaded = Math.max(targetLoadedPercent, targetLoadedSize),
 
           percent = now / targetLoaded * 100.0;
@@ -72,15 +84,23 @@ var playTorrent = window.playTorrent = function (torrent, subs, movieModel, call
         flix.clearCache();
         flix.destroy();
         videoStreamer = null;
+        flix = null;
 
         // Unbind the event handler
         $(document).off('videoExit');
-
         flix = null;
       });
     });
-  });
 
+    flix.server.once('error', function() {
+      console.error(arguments);
+      flix.server.listen(0);
+    });
+
+    flix.server.listen(8888);
+
+    flix.verify();
+  });
 };
 
 function videoError(e) {
