@@ -10,12 +10,8 @@ var playTorrent = window.playTorrent = function (torrentUri, subs, movieModel, c
   videoStreamer ? $(document).trigger('videoExit') : null;
 
   // Create a unique file to cache the video (with a microtimestamp) to prevent read conflicts
-<<<<<<< .merge_file_i4nP3e
   var tmpFolder = path.join(os.tmpDir(), 'Popcorn-Time')
   var tmpFilename = ( torrent.toLowerCase().split('/').pop().split('.torrent').shift() ).slice(0,100);
-=======
-  var tmpFilename = ( torrentUri.toLowerCase().split('/').pop().split('.torrent').shift() ).slice(0,100);
->>>>>>> .merge_file_eeLamf
   tmpFilename = tmpFilename.replace(/([^a-zA-Z0-9-_])/g, '_') + '.mp4';
   var tmpFile = path.join(tmpFolder, tmpFilename);
 
